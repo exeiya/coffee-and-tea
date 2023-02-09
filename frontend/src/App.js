@@ -1,29 +1,9 @@
 import { useState, useEffect } from "react";
 import DrinkVarietyTable from "./components/DrinkVarietyTable";
-import { Container, Typography , Button, Paper} from "@mui/material";
+import { Container, Typography, Button, Paper } from "@mui/material";
 import DrinkVarietyForm from "./components/DrinkVarietyForm";
 import styled from "@emotion/styled";
-
-const allDrinks = [
-  { id: 1,
-    name: "coffee 1", 
-    type: "coffee",
-    roastLevel: "1",
-    weight: "500",
-    price: "7" },
-  { id: 2,
-    name: "coffee 2", 
-    type: "coffee",
-    roastLevel: "2",
-    weight: "450",
-    price: "8" },
-  { id: 3,
-    name: "tea 1", 
-    type: "tea",
-    roastLevel: "-",
-    weight: "40",
-    price: "3" }
-]
+import drinkVarietyService from "./services/drinkVariety";
 
 const TitlePaper = styled(Paper)`
   background-color: #364a62;
@@ -48,7 +28,11 @@ function App() {
   const [showFormDialog, setShowFormDialog] = useState(false)
 
   useEffect(() => {
-    setDrinks(allDrinks)
+    const fetchDrinkVarieties = async () => {
+      const drinkVarieties = await drinkVarietyService.getAll()
+      setDrinks(drinkVarieties)
+    }
+    fetchDrinkVarieties();
   }, [])
 
   const addNewVariety = (variety) => {

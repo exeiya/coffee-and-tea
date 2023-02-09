@@ -1,5 +1,6 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
 const allDrinks = [
   { id: 1,
@@ -21,6 +22,8 @@ const allDrinks = [
     weight: "40",
     price: "3" }
 ]
+
+app.use(cors())
 
 app.get("/api/drinkVarieties", (request, response) => {
   response.json(allDrinks)
