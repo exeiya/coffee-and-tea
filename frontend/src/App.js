@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import DrinkVarietyTable from "./components/DrinkVarietyTable";
+import { Container, Typography , Paper} from "@mui/material";
+import styled from "@emotion/styled";
 
 const allDrinks = [
   { id: 1,
@@ -21,6 +24,24 @@ const allDrinks = [
     price: "3" }
 ]
 
+const TitlePaper = styled(Paper)`
+  background-color: #364a62;
+  color: white;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+`
+
+const TableContainer = styled(Container)`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+`
+
 function App() {
   const [drinks, setDrinks] = useState([])
 
@@ -33,19 +54,15 @@ function App() {
 
   return (
     <div>
-      <h2>Coffees and Teas</h2>
-      <table>
-        <tr>
-          <th>Coffees</th>
-        </tr>
-        {coffees.map(c => <tr><td>{c.name}</td></tr>)}
-      </table>
-      <table>
-        <tr>
-          <th>Teas</th>
-        </tr>
-        {teas.map(t => <tr><td>{t.name}</td></tr>)}
-      </table>
+      <div style={{ marginBottom: "20px" }}>
+        <TitlePaper>
+            <Typography variant="h4" align="center">Kahvit ja Teet</Typography>
+        </TitlePaper>
+      </div>
+      <TableContainer>
+        <DrinkVarietyTable drinks={coffees} title="Kahvit" />
+        <DrinkVarietyTable drinks={teas} title="Teet" />
+      </TableContainer>
     </div>
   );
 }
