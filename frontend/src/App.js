@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import DrinkVarietyTable from "./components/DrinkVarietyTable";
-import { Container, Typography , Paper} from "@mui/material";
+import { Container, Typography , Button, Paper} from "@mui/material";
+import DrinkVarietyForm from "./components/DrinkVarietyForm";
 import styled from "@emotion/styled";
 
 const allDrinks = [
@@ -44,10 +45,15 @@ const TableContainer = styled(Container)`
 
 function App() {
   const [drinks, setDrinks] = useState([])
+  const [showFormDialog, setShowFormDialog] = useState(false)
 
   useEffect(() => {
     setDrinks(allDrinks)
   }, [])
+
+  const addNewVariety = (variety) => {
+    setDrinks([...drinks, variety])
+  }
 
   const coffees = drinks.filter(d => d.type === "coffee")
   const teas = drinks.filter(d => d.type === "tea")
@@ -56,9 +62,17 @@ function App() {
     <div>
       <div style={{ marginBottom: "20px" }}>
         <TitlePaper>
-            <Typography variant="h4" align="center">Kahvit ja Teet</Typography>
+          <Typography variant="h4" align="center">Kahvit ja Teet</Typography>
+          <Button 
+            variant="contained" 
+            sx={{ width: "150px", marginTop: "10px"}}
+            onClick={() => setShowFormDialog(true)}
+          >
+            Lisää uusi
+          </Button>
         </TitlePaper>
       </div>
+      <DrinkVarietyForm show={showFormDialog} close={() => setShowFormDialog(false)} addNew={addNewVariety} />
       <TableContainer>
         <DrinkVarietyTable drinks={coffees} title="Kahvit" />
         <DrinkVarietyTable drinks={teas} title="Teet" />
