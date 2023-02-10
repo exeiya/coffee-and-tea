@@ -14,6 +14,15 @@ const getAllDrinkVaritiesFromDB = () => {
   return readData;
 }
 
+const getOneDrinkVariety = (id) => {
+  const readData = fs.readFile(dbPath, "utf8").then(data => {
+    const varieties = JSON.parse(data).drinkVarieties;
+    const variety = varieties.find(v => v.id == id)
+    return variety
+  })
+  return readData;
+}
+
 // mock db generated ids
 const idNumberGenerator = () => {
   return Math.floor(Math.random() * 100000);
@@ -35,4 +44,4 @@ const addNewDrinkVariety = (drink) => {
   return drinkVarieties
 }
 
-module.exports = { getAllDrinkVaritiesFromDB, addNewDrinkVariety };
+module.exports = { getAllDrinkVaritiesFromDB, addNewDrinkVariety, getOneDrinkVariety };

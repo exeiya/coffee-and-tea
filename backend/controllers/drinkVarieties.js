@@ -13,6 +13,16 @@ drinkVarietiesRouter.get("/", (request, response) => {
   });
 });
 
+drinkVarietiesRouter.get("/:id", (request, response) => {
+  DB.getOneDrinkVariety(request.params.id).then(data => {
+    if (data) {
+      response.json(data)
+    } else {
+      response.status(404).end()
+    }
+  });
+});
+
 drinkVarietiesRouter.post("/", (request, response) => {
   const variety = request.body
   const newDrinkVariety = {
