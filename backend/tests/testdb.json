@@ -1,0 +1,28 @@
+{
+  "drinkVarieties": [
+    {
+      "id": 1,
+      "name": "Test Juhla Mokka",
+      "type": "coffee",
+      "roastLevel": "1",
+      "weight": "500",
+      "price": "7"
+    },
+    {
+      "id": 2,
+      "name": "Juhla Mokka Tumma Paahto",
+      "type": "coffee",
+      "roastLevel": "3",
+      "weight": "500",
+      "price": "7"
+    },
+    {
+      "id": 3,
+      "name": "Twinings Earl Grey",
+      "type": "tea",
+      "roastLevel": "-",
+      "weight": "50",
+      "price": "3.90"
+    }
+  ]
+}

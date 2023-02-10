@@ -1,4 +1,6 @@
 const drinkVarietiesRouter = require("express").Router();
+
+// a JSON file as a mock database
 const DB = require("../utils/dbReader");
 
 drinkVarietiesRouter.get("/", (request, response) => {

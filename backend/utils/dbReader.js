@@ -1,6 +1,11 @@
 const fs = require("fs").promises;
 const path = require("path");
-const dbPath = path.resolve(__dirname, "../db.json");
+
+// set to use test mock db for test
+let dbPath = path.resolve(__dirname, "../db.json");
+if (process.env.NODE_ENV === "test") {
+  dbPath = path.resolve(__dirname, "../tests/testdb.json");
+}
 
 const getAllDrinkVaritiesFromDB = () => {
   const readData = fs.readFile(dbPath, "utf8").then(data => {
