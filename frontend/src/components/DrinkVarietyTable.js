@@ -3,7 +3,7 @@ import { Table, TableHead, TableRow, TableBody,
 import styled from "@emotion/styled";
 
 const StyledTableCell = styled(TableCell)`
-  background-color: #1976d2;
+  background-color: #00acc1;
   color: white;
   font-size: 14px;
   font-weight: 600;
