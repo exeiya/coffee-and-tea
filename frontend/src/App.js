@@ -35,8 +35,9 @@ function App() {
     fetchDrinkVarieties();
   }, [])
 
-  const addNewVariety = (variety) => {
-    setDrinks([...drinks, variety])
+  const addNewVariety = async (variety) => {
+    const newDrinkVariety = await drinkVarietyService.create(variety);
+    setDrinks([...drinks, newDrinkVariety]);
   }
 
   const coffees = drinks.filter(d => d.type === "coffee")
